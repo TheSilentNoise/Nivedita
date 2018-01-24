@@ -1,35 +1,18 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register | lEarn.Tech</title>
-    <meta name="description" content="Learn Today...Earn Tomorrow">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+{% extends "layout.html" %}
+<!--Banner-->
+{% block content %}
 {% import "bootstrap/wtf.html" as wtf  %}
-    <link rel="stylesheet" type="text/css" href="../static/css/font.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/imagehover.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/custom.css">
 
-  </head>
-  <body>
-
-   {% include 'header.html' %}
-
-   <br/><br/><br/>
+<br/><br/>
 
      <section id ="pricing" class="section-padding">
      <div class="container">
-    <!--Contact-->
 
       <div class="row">
 
     <div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
 		<div class="panel panel-success">
             <div class="panel-body">
-				{% block content %}
 
                 <div class="col-md-12">
                 <form class="form-signup" method="POST" action="/signup">
@@ -51,9 +34,6 @@
                     Already a member ? <a href="/login">Log in</a>
 
                 </div>
-                {% endblock %}
-
-
 
 			</div>
 		</div>
@@ -61,16 +41,4 @@
 </div>
 </div>
     </section>
-    <!--/ Contact-->
-
-        {% include 'footer.html' %}
-
-
-
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/jquery.easing.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/custom.js"></script>
-
-  </body>
-</html>
+{% endblock %}

@@ -1490,7 +1490,7 @@ hr {
 }
 
 .h4, h4 {
-	font-size: 18px
+	font-size: 17px
 }
 
 .h5, h5 {
@@ -7099,11 +7099,11 @@ button.close {
 	}
 	.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev
 		{
-		margin-left: -10px
+		margin-left: -25px
 	}
 	.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next
 		{
-		margin-right: -10px
+		margin-right: -25px
 	}
 	.carousel-caption {
 		right: 20%;

@@ -1,26 +1,6 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home | lEarn.Tech</title>
-    <meta name="description" content="Learn Today...Earn Tomorrow">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
-    <link rel="stylesheet" type="text/css" href="../static/css/font.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css" href="../static/css/imagehover.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-  	<link rel="stylesheet" type="text/css" href="../static/css/custom.css">
-
-
-</head>
-  <body>
-
-	 {% include 'header.html' %}
-
-    <!--Banner-->
+{% extends "layout.html" %}
+<!--Banner-->
+{% block content %}
     <div class="banner">
       <div class="bg-color">
         <div class="container">
@@ -74,10 +54,11 @@
 	            <p>Course Fees : XXXX </p><hr/>
 	            <a href='data-engg-course.jsp'>Course Details</a>
 	            <div class="pull-right">
-	            <button class="btn btn-success" onclick="window.location.href='data-engg-course.jsp'">Enroll</button>
+	            <button class="btn btn-success" onclick="window.location.href='/courses'">Enroll</button>
 	            </div>
 	         </div>
          </div>
+
 
 
           <div class="col-md-4 col-sm-6 padleft-right">
@@ -135,18 +116,20 @@
         </div>
       </div>
       <div class="text-center">
-      		<button type="button" class="btn btn-success" onclick="window.location.href='course.jsp'">View All Courses</button>
+      		<button type="button" class="btn btn-success" onclick="window.location.href='/courses'">View All Courses</button>
       </div>
 
     </section>
     <!--/ Start Learning-->
 
 
+
+
     <section id ="feature" class="section-padding">
       <div class="container">
         <div class="row">
           <div class="header-section text-center">
-            <h2 class="header-border">Upcoming Courses</h2>
+            <h2 class="header-border">Upcoming Courses & Events</h2>
           </div>
           <br/><br/>
         </div>
@@ -162,15 +145,17 @@
 
 						<div class="carousel-inner">
 							<div class="item items active">
+
 							<div class="text center">
 							<div class="carousel-caption d-none d-md-block">
 
 						   <div class="col-md-12">
-							    <h3>Course Name : Programming Fundamentals (Java+ Scala + Python)</h3><br/><br/>
+							    <h3 class="events">Programming Fundamentals (Java+ Scala + Python)</h3><br/><br/>
 							    <h4>Duration : </h4><br/>
 							    <h4>Start Date : </h4><br/>
-							    <p><a href="">View Course Details</a></p>
-						   </div>
+                               <p><button type="button" class="btn btn-success">View Details</button></p>
+						   <br/>
+                           </div>
 							  </div>
 							</div>
 							</div>
@@ -179,10 +164,11 @@
 							<div class="text center">
 							<div class="carousel-caption d-none d-md-block">
 								   <div class="col-md-12">
-									    <h3 >Course Name : Data Engineering Fundamentals</h3><br/><br/>
+									    <h3 class="events">Data Engineering Fundamentals</h3><br/><br/>
 									    <h4>Duration : </h4><br/>
 									    <h4>Start Date : </h4><br/>
-									    <p><a href="">View Course Details</a></p>
+                                       <p><button type="button" class="btn btn-success">View Details</button></p>
+                                       <br/>
 								   </div>
 							  </div>
 							</div>
@@ -192,10 +178,11 @@
 							<div class="text center">
 							<div class="carousel-caption d-none d-md-block">
 							   <div class="col-md-12">
-								    <h3>Course Name : Big Data & Hadoop</h3><br/><br/>
+								    <h3 class="events">Big Data & Hadoop</h3><br/><br/>
 								    <h4>Duration : </h4><br/>
 								    <h4>Start Date : </h4><br/>
-								    <p><a href="">View Course Details</a></p>
+                                   <p><button type="button" class="btn btn-success">View  Details</button></p>
+                                   <br/>
 							   </div>
 							  </div>
 							</div>
@@ -227,6 +214,7 @@
         <div class="row">
           <div class="header-section text-center">
             <h2 class="header-border">Latest Blog Posts</h2>
+              <br/>
           </div>
         </div>
         <div class='row'>
@@ -316,7 +304,7 @@
         </div>
 
         <div class="text-center">
-      		<button type="button" class="btn btn-success" onclick="window.location.href='blog.jsp'">View All Blogs</button>
+      		<button type="button" class="btn btn-success" onclick="window.location.href='/blogs'">View All Blogs</button>
       </div>
 
     </section>
@@ -331,65 +319,65 @@
             <h2 class="header-border">What we provide</h2>
           </div>
           <br/><br/>
+
           <div class="feature-info">
-            <div class="col-sm-2">
+            <div class="col-md-4">
             <figure class="border">
-              <img src="../static/img/home/interactive-live-training.png" class="img-responsive"><br/>
+              <img src="../static/img/home/interactive-live-training.png" height="80" ><br/>
             </figure>
             <p><h5 class="text-center">Interactive Live Training</h5></p>
           </div>
          </div>
 
             <div class="feature-info">
-            <div class="col-sm-2">
+            <div class="col-md-4">
             <figure class="border">
-              <img src="../static/img/home/24-learning-platform.png" class="img-responsive"><br/>
+              <img src="../static/img/home/24-learning-platform.png" height="80"><br/>
             </figure>
              <p><h5 class="text-center">24x7 Learning Platform</h5></p>
           </div>
          </div>
 
           <div class="feature-info">
-            <div class="col-sm-2">
+            <div class="col-md-4">
             <figure class="border">
-              <img src="../static/img/home/live-project.png" class="img-responsive"><br/>
+              <img src="../static/img/home/live-project.png" height="80"><br/>
             </figure>
              <p><h5 class="text-center">Live Industry Projects</h5></p>
           </div>
          </div>
 
          <div class="feature-info">
-            <div class="col-sm-2">
+            <div class="col-md-4">
             <figure class="border">
-              <img src="../static/img/home/latest-course-curriculum.png" class="img-responsive"><br/>
+              <img src="../static/img/home/latest-course-curriculum.png" height="80"><br/>
             </figure>
              <p><h5 class="text-center">Latest Course Curriculum</h5></p>
           </div>
          </div>
 
          <div class="feature-info">
-            <div class="col-sm-2">
+            <div class="col-md-4">
             <figure class="border">
-              <img src="../static/img/home/trainers-across-globe.png" class="img-responsive"><br/>
+              <img src="../static/img/home/trainers-across-globe.png" height="80"><br/>
             </figure>
              <p><h5 class="text-center">Trainers across globe</h5></p>
           </div>
          </div>
 
          <div class="feature-info">
-            <div class="col-sm-2">
+            <div class="col-md-4">
             <figure class="border">
-              <img src="../static/img/home/hands-on-experience.png" class="img-responsive"><br/>
+              <img src="../static/img/home/hands-on-experience.png" height="80"><br/>
             </figure>
              <p><h5 class="text-center">Hands on Experience</h5></p>
           </div>
          </div>
         </div>
         </div>
-   <br/><br/><br/>
+   <br/>
     </section>
     <!--/ What we provide-->
-
 
  <!--Subscribe-->
     <section id="cta-2">
@@ -411,13 +399,6 @@
     <!--/ Subscribe-->
 
 
-	{% include 'footer.html' %}
 
 
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/jquery.easing.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/custom.js"></script>
-
-  </body>
-</html>
+{% endblock %}

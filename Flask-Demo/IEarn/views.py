@@ -1,4 +1,4 @@
-from flask import render_template,redirect,url_for,session
+from flask import render_template,redirect,url_for,session,request
 from app import app
 from models import *
 import datetime
@@ -22,7 +22,7 @@ def load_user(user_id):
 
 
 
-############ login ,registration
+############ login ,registration ###############
 
 
 @app.route('/')
@@ -57,14 +57,13 @@ def signup():
             try:
                 # session['username'] = form.username.data
                 hashed_password = generate_password_hash(form.user_password.data, method='sha256')
-                creation_time = datetime.datetime.now()
-                print(creation_time)
+                date_created = datetime.datetime.now()
                 new_user = User(
                     user_name=form.user_name.data,
                     user_email=form.user_email.data,
                     user_phoneno=form.user_phoneno.data,
                     user_password=hashed_password,
-                    creation_time=creation_time)
+                    date_created=date_created)
                 db.session.add(new_user)
                 db.session.commit()
                 return redirect( url_for('login'))
@@ -82,14 +81,58 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route('/enroll-now',methods=['GET','POST'])
+def enroll_now():
+    if current_user.is_authenticated:
+        course_id = request.args.get('course_id', type=int)
+        user_id = current_user.id
+        date_created = datetime.datetime.now()
+        user_course = User_Course(user_id=user_id,
+                                  course_id=course_id,
+                                  date_created=date_created)
+        db.session.add(user_course)
+        db.session.commit()
+        return redirect(url_for('mycourses'))
+    return redirect(url_for('login'))
 
-############ courses ########
+
+
+############## courses ############
+
+
+
+@login_required
+@app.route('/mycourses')
+def mycourses():
+    if current_user.is_authenticated:
+      no_of_course = User_Course.query.with_entities(User_Course.course_id).filter_by(user_id=current_user.id).count()
+      if no_of_course == 0:
+          return render_template('mycourses.html',name=current_user.user_name,message=True)
+      else:
+         try:
+             courseqry = Courses.query\
+                        .join(User_Course, Courses.id == User_Course.course_id)\
+                        .with_entities(Courses.course_name,Courses.course_url)\
+                        .filter_by(user_id=current_user.id).distinct().all()
+
+             user_courseList =[]
+             for usr_course in courseqry:
+                 user_courseList.append(usr_course)
+             return render_template("mycourses.html", user_courseList=user_courseList,name=current_user.user_name )
+
+         except Exception:
+             return render_template('mycourses.html', name=current_user.user_name)
+    return redirect(url_for('courses'))
+
+
+
 
 @app.route('/courses')
 def courses():
     if current_user.is_authenticated:
       return render_template('courses.html',name=current_user.user_name)
     return render_template('courses.html')
+
 
 
 @app.route('/courses/data-engineering-fundamentals')
@@ -100,7 +143,7 @@ def course_data_engineering():
 
 
 
-######### blogs #############
+############ blogs #############
 
 
 @app.route('/blogs')
@@ -115,6 +158,39 @@ def api_concepts():
     if current_user.is_authenticated:
       return render_template('blogs/api-concepts.html',name=current_user.user_name)
     return render_template('blogs/api-concepts.html')
+
+
+@app.route('/java-collection-cheatsheet')
+def java_collection_cheatsheet():
+    if current_user.is_authenticated:
+       return render_template('blogs/java-collection-cheatsheet.html',name=current_user.user_name)
+    return render_template('blogs/java-collection-cheatsheet.html')
+
+
+
+####### user profile ########
+
+@login_required
+@app.route('/profile')
+def profile():
+    if current_user.is_authenticated:
+       return render_template('profile.html',name=current_user.user_name)
+    return redirect(url_for('index'))
+
+
+
+####### student course #######
+
+
+@login_required
+@app.route('/data-engineering-tutorial')
+def data_engineering_tutorial():
+    if current_user.is_authenticated:
+       return render_template('student-course/de.html',name=current_user.user_name)
+    return redirect(url_for('courses'))
+
+
+
 
 
 
