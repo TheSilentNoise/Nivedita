@@ -6,8 +6,8 @@ mail=Mail(app)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'dma.rssoftware@gmail.com'
-app.config['MAIL_PASSWORD'] = 'Ayan_Nivedita_Rajesh'
+app.config['MAIL_USERNAME'] = 'thesilentnoise.com@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Thesilent@2017'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
@@ -23,4 +23,4 @@ def index():
    return "Sent"
 
 if __name__ == '__main__':
-   app.run(debug = True)
+   app.run(host='0.0.0.0',debug = True)
